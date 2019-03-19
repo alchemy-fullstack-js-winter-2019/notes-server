@@ -58,6 +58,7 @@ describe('notes routes', () => {
         expect(res.ok).toBeTruthy();
         expect(res.body).toEqual({
           ...note,
+          author: 'test.user',
           title: 'My New Title',
           body: 'My New Body'
         });
