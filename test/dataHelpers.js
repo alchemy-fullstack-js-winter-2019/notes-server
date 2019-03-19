@@ -23,7 +23,7 @@ afterAll(() => {
 
 const getNote = () => {
   return Note
-    .findOne()
+    .findOne({ title: 'My Note0' })
     .then(note => {
       return JSON.parse(JSON.stringify(note));
     });

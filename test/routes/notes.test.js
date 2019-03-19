@@ -43,4 +43,20 @@ describe('notes routes', () => {
         });
       });
   });
+
+  it('updates a note by id', async() => {
+    const note = await getNote();
+
+    return request(app)
+      .put(`/notes/${note._id}`)
+      .send({ title: 'My New Title', body: 'My New Body' })
+      .then(res => {
+        expect(res.ok).toBeTruthy();
+        expect(res.body).toEqual({
+          ...note,
+          title: 'My New Title',
+          body: 'My New Body'
+        });
+      });
+  });
 });
