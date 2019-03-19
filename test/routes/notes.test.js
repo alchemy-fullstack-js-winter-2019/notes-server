@@ -4,6 +4,7 @@ const app = require('../../lib/app');
 const request = require('supertest');
 
 jest.mock('../../lib/middleware/ensureAuth.js');
+jest.mock('../../lib/services/auth.js');
 
 describe('notes routes', () => {
   it('creates a new note when posted to', () => {
@@ -40,7 +41,11 @@ describe('notes routes', () => {
         expect(res.ok).toBeTruthy();
         expect(res.body).toEqual({
           _id,
-          author: 'test.user',
+          author: {
+            nickname: 'test.user',
+            email: 'test@test.com',
+            sub: '1234'
+          },
           title: 'My Note0',
           body: 'My Note 0',
           __v: 0
