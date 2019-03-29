@@ -4,6 +4,8 @@ name: default
 steps:
 - name: test
   image: node
+  environment:
+    MONGODB_URI: mongodb://db:27017/notes
   commands:
   - npm install
   - npm test
@@ -15,3 +17,7 @@ steps:
     token:
       from_secret: token
     app: alchemy-notes
+
+services:
+- name: db
+  image: mongo
